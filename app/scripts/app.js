@@ -12,7 +12,7 @@
 angular.module('projectManagementApplicationApp', ['appRoutes','authService','mainService','appController','trNgGrid'])
  .constant('config',{
 	       appName: 'Project Management Application',
-		   apiUrl:'http://localhost:3000/',
+		   apiUrl:'https://blooming-plains-81544.herokuapp.com/',
 	       roles:{
 	       	admin:'ROLE_ADMIN',
 			user:'ROLE_USER'   

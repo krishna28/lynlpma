@@ -63,17 +63,6 @@ angular.module("appRoutes",['ui.router','ui-notification'])
 				, templateUrl: 'partials/projectdetail.html'
 				, controller: 'DashboardCtrl'
 			})
-	        .state('dashboard.addComment', {
-				url: '/addComment',
-		        params:{
-		        taskId:null,
-				projectId:null	
-		        }
-				, templateUrl: 'partials/createComment.html'
-				, controller: 'DashboardCtrl'
-			})
-	        
-console.log("default is called");
 	$urlRouterProvider.otherwise('/');
 	
 	$httpProvider.interceptors.push('AuthInterceptor');
@@ -83,7 +72,6 @@ console.log("default is called");
 	
 	$rootScope.$on('$stateChangeStart', 
     function(event, toState, toParams, fromState, fromParams, options){ 
-        console.log("State changes");
 		$rootScope.isUserLoggedIn = Auth.isLoggedIn();
 		if(toState.name === "home"){
              return;
@@ -97,7 +85,6 @@ console.log("default is called");
 		}
 		console.log("State changes outside",toState.name);
 		if(!Auth.isLoggedIn() && toState.name!="login"){
-			console.log("State changes isnde true");
 			 event.preventDefault();
 			 $state.transitionTo("login", null, {notify:false});
              $state.go('login');

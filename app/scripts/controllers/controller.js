@@ -44,13 +44,13 @@ angular.module('appController', [])
 
 		};
 
-		mainVm.getProjects = function () {
-			Auth.getProjects().then(function successcallback(serviceResponse) {
+		// mainVm.getProjects = function () {
+		// 	Auth.getProjects().then(function successcallback(serviceResponse) {
 
-			}, function errorCallback(err) {
-				console.log(err);
-			});
-		}
+		// 	}, function errorCallback(err) {
+		// 		console.log(err);
+		// 	});
+		// }
 
 
 		mainVm.register = function () { 
@@ -143,6 +143,7 @@ angular.module('appController', [])
 				if (serviceResponse.status == 200) {
 					Notification.success('Project created! ');
 					dashboardVm.projectTitle = "";
+					dashboardVm.getProjects();
 				}
 			}, function errorHnadler(err) {
 				console.log(err);
