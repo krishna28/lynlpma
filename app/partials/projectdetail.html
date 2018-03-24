@@ -1,0 +1,60 @@
+<div ng-controller="DashboardCtrl as dashboardVm">
+  <div class="row" id="projecdt" style="background-color: white;padding: 10px;">
+    <div class="col-md-12">
+      <h3 style="display: inline-block;">Project details</h3>
+      <hr>
+      <div>
+        <form role="form" name="form1">
+          
+          <div  class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" name="title" class="form-control" id="projectTitle" placeholder="Title" ng-model="dashboardVm.projectInstance.title">
+          </div>
+          <div class="form-group col-xs-12">
+            <label for="status">Status</label>
+            <select class="form-control" id="status"
+              ng-model="dashboardVm.projectInstance.status" name="status">
+              <option value="">Select Status</option>
+              <option value="NEW">NEW</option>
+              <option value="INPROGRESS">IN-PROGRESS</option>
+              <option value="COMPLETE">COMPLETE</option>
+            </select>
+          </div>
+          
+          <div class="form-group col-xs-12">
+            <label for="status">Add Experts</label>
+            <select class="form-control" multiple name="expert" ng-model="dashboardVm.projectInstance.expertUser"  ng-options="item.id as item.name for item in dashboardVm.users">
+            </select>
+          </div>
+          <div class="form-group col-xs-12" ng-if="dashboardVm.projectInstance.experts.length > 0">
+              <table class="table table-bordered table-dark">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="row in dashboardVm.projectInstance.experts" ng-class="row.status == 'APPROVED' ? 'alert alert-success':
+                  (row.status == 'NEW' ? 'alert alert-info':'alert alert-danger')">
+                    <td style="text-align: left">{{row.expert.name}}</td>                   
+                    <td style="text-align: left">{{row.expert.username}}</td>
+                    <td>
+                      <button type="button" ng-disabled="row.status == 'APPROVED'"  class="btn btn-primary btn-xs" ng-click="row.status = 'APPROVED'">Approve</button>
+                      <button type="button" ng-click="row.status = 'REJECTED'" ng-disabled="row.status == 'REJECTED'" class="btn btn-danger btn-xs">Reject</button>
+                    </td>     
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+              <div class="col-xs-12">
+                <button type="button" class="btn btn-success" ng-click="dashboardVm.updateProject()">Update</button>
+                <button class="btn btn-primary" type="button" type="button">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <hr>
+    </div>

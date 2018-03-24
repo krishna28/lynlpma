@@ -1,0 +1,55 @@
+<label class="checkbox-inline"><input type="checkbox" ng-model="dashboardVm.newb">View New</label>
+<label class="checkbox-inline"><input type="checkbox" ng-model="dashboardVm.pendingb">View Pending</label>
+<label class="checkbox-inline"><input type="checkbox" ng-model="dashboardVm.expiredb">View Expired</label>
+<table ng-if="dashboardVm.newb" tr-ng-grid="" items="dashboardVm.newProjects" fields="['title','status','created','experts']">
+	<thead>
+		<tr>
+			<th field-name="title" display-format="trimed:title:50"></th>
+			<th field-name="status"></th>
+			<th field-name="created"></th>
+			<th field-name="experts" display-format="approvedExperts:gridItem"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr> 
+			<td>
+              <a ui-sref="dashboard.project({id:gridItem._id,projectInstance: gridItem})">Edit</a>
+			</td>
+		</tr>
+		
+	</tbody>
+</table>
+<table ng-if="dashboardVm.pendingb" tr-ng-grid="" items="dashboardVm.pending" fields="['title','status','created','experts']">
+	<thead>
+		<tr>
+			<th field-name="title" display-format="trimed:title:50"></th>
+			<th field-name="status"></th>
+			<th field-name="created"></th>
+			<th field-name="experts" display-format="approvedExperts:gridItem"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr> 
+			<td>
+              <a ui-sref="dashboard.project({id:gridItem._id,projectInstance: gridItem})">Edit</a>
+			</td>
+		</tr>
+		
+	</tbody>
+</table>
+
+<table ng-if="dashboardVm.expiredb" tr-ng-grid="" items="dashboardVm.expiredProjects" fields="['title','status','created','experts']">
+	<thead>
+		<tr>
+			<th field-name="title" display-format="trimed:title:50"></th>
+			<th field-name="status"></th>
+			<th field-name="created"></th>
+			<th field-name="experts" display-format="approvedExperts:gridItem"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr> 
+		
+		</tr>
+	</tbody>
+</table>
